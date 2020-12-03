@@ -1,4 +1,5 @@
 # Toastify
+[![](https://jitpack.io/v/JoniKarta/Toastify.svg)](https://jitpack.io/#JoniKarta/Toastify)
 
 
 Library for creating custom Toast message which offers an adaptive UI support. 
@@ -17,7 +18,7 @@ allprojects {
 Step 2. Add the dependency:
 ```gradle
 dependencies {
-      
+        implementation 'com.github.JoniKarta:Toastify:1.0.1'
 }
 ```
 ## Usage
