@@ -1,6 +1,7 @@
 package com.example.toastify;
 
 import android.app.Activity;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -21,7 +22,8 @@ public final class Toastify {
         this.imageView = builder.imageView;
         this.toast = builder.toast;
     }
-    public void show(){
+
+    public void show() {
         toast.show();
     }
 
@@ -38,27 +40,27 @@ public final class Toastify {
     }
 
     public static class Builder {
-
         private Toast toast;
         private ImageView imageView;
         private TextView headerTextView;
         private TextView contentTextView;
+        private LinearLayout linearLayout;
 
         public Builder(Activity context) {
             setup(context);
         }
 
-        private void setup(Activity context){
+        private void setup(Activity context) {
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            LinearLayout constraintLayout = (LinearLayout) layoutInflater.inflate(R.layout.custom_toast_layout, context.findViewById(R.id.custom_toast_main_layout));
-            imageView = constraintLayout.findViewById(R.id.image_view_img_content);
-            headerTextView = constraintLayout.findViewById(R.id.text_view_header);
-            contentTextView = constraintLayout.findViewById(R.id.text_view_message);
-            toast = Toast.makeText(context,null, Toast.LENGTH_SHORT);
-            toast.setView(constraintLayout);
-            toast.setGravity(Gravity.CENTER, 0 ,0 );
+            linearLayout = (LinearLayout) layoutInflater.inflate(R.layout.custom_toast_layout, context.findViewById(R.id.custom_toast_main_layout));
+            imageView = linearLayout.findViewById(R.id.image_view_img_content);
+            headerTextView = linearLayout.findViewById(R.id.text_view_header);
+            contentTextView = linearLayout.findViewById(R.id.text_view_message);
+            toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 0);
 
         }
+
         public Builder setHeader(String header) {
             headerTextView.setText(header);
             return this;
@@ -74,8 +76,48 @@ public final class Toastify {
             return this;
         }
 
+        public Builder setGravity(int gravity, int offsetX, int offsetY) {
+            toast.setGravity(gravity, offsetX, offsetY);
+            return this;
+        }
+
+        public Builder setBackground(int backgroundResource) {
+            linearLayout.setBackgroundResource(backgroundResource);
+            return this;
+        }
+
+        public Builder setDuration(int length) {
+            if (length == Toast.LENGTH_LONG)
+                toast.setDuration(length);
+            else {
+                toast.setDuration(Toast.LENGTH_SHORT);
+            }
+            return this;
+        }
+
+        public Builder setHeaderTextSize(int size) {
+            headerTextView.setTextSize(size);
+            return this;
+        }
+
+        public Builder setHeaderTextColor(int color) {
+            headerTextView.setTextColor(color);
+            return this;
+        }
+
+        public Builder setContentTextSize(int size) {
+            contentTextView.setTextSize(size);
+            return this;
+        }
+
+        public Builder setContentTextColor(int color) {
+            contentTextView.setTextColor(color);
+            return this;
+        }
+
 
         public Toastify build() {
+            toast.setView(linearLayout);
             return new Toastify(this);
         }
     }

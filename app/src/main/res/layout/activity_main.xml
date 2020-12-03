@@ -7,19 +7,32 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/toastify_custom_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         android:onClick="onClickView"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Custom Toast"
+        app:backgroundTint="#464D75"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/toastify_err_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:onClick="onClickView"
+        android:text="Error Toast"
+        app:backgroundTint="#A34242"
+        app:layout_constraintEnd_toEndOf="@+id/toastify_custom_button"
+        app:layout_constraintStart_toStartOf="@+id/toastify_custom_button"
+        app:layout_constraintTop_toBottomOf="@+id/toastify_custom_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
